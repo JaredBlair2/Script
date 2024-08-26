@@ -5,14 +5,25 @@ const urlPattern = /^https:\/\/gpm-mon-va\.bytegsdk\.com\/monitor\/appmonitor\/v
 
 // Function to handle the HTTP request
 function onRequest(request) {
-    // Check if the request URL matches the specified pattern
-    if (urlPattern.test(request.url)) {
-        // Show a notification on iOS
-        $notification.post("URL Matched", "The specified URL was detected", request.url);
-    }
+    // Infinite loop to keep triggering the notification
+    while (true) {
+        // Check if the request URL matches the specified pattern
+        if (urlPattern.test(request.url)) {
+            // Show a notification on iOS
+            $notification.post("URL Matched", "The specified URL was detected", request.url);
+        }
 
-    // Proceed with the request
-    $done({});
+        // Delay to prevent blocking the device (optional)
+        sleep(1000);  // sleep for 1 second before the next iteration
+    }
+}
+
+// Simulate sleep/delay function
+function sleep(ms) {
+    const start = Date.now();
+    while (Date.now() - start < ms) {
+        // Busy wait
+    }
 }
 
 // Attach the function to handle the HTTP request event
