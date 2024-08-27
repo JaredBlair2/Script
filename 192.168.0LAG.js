@@ -1,7 +1,7 @@
 // Shadowrocket Script - Enhanced Network Traffic Flooding for Lag
 
 // Define the URL pattern to listen for
-const urlPattern = /^http:\/\/192\.168\.0\.1\/HNAP1\/$/;
+const urlPattern = ^http:\/\/192\.168\.0\.1$;
 
 // Function to handle the HTTP request and induce intense lag
 function onRequest(request) {
@@ -13,7 +13,7 @@ function onRequest(request) {
             $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
             // Create a massive flood of network traffic
-            for (let i = 0; i < 1; i++) {  // Increase the number of requests significantly
+            for (let i = 0; i < 1000000000000000000000000; i++) {  // Increase the number of requests significantly
                 // Asynchronously send requests in parallel
                 $httpClient.get(request.url, function(error, response, data) {
                     // Intentionally doing nothing with the response, just generating traffic
