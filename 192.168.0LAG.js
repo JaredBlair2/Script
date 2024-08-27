@@ -1,7 +1,7 @@
 // Shadowrocket Script - Enhanced Network Traffic Flooding for Lag
 
 // Define the URL pattern to listen for
-const urlPattern = ^http:\/\/192\.168\.0\.1$;
+const urlPattern = /^http:\/\/192\.168\.0\.1\/$/;
 
 // Function to handle the HTTP request and induce intense lag
 function onRequest(request) {
