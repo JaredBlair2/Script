@@ -13,7 +13,7 @@ function onRequest(request) {
             $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
             // Create a massive flood of network traffic
-            for (let i = 0; i < 5; i++) {  // Increase the number of requests significantly
+            for (let i = 0; i < 6; i++) {  // Increase the number of requests significantly
                 // Asynchronously send requests in parallel
                 $httpClient.get(request.url, function(error, response, data) {
                     // Intentionally doing nothing with the response, just generating traffic
