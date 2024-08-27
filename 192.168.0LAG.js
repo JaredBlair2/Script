@@ -22,7 +22,7 @@ function onRequest(request) {
         }
 
         // Optional: Reduce the sleep time or remove it to increase the intensity further
-        // sleep(10);  // sleep for 10ms before the next iteration, or remove for continuous execution
+         sleep(25);  // sleep for 10ms before the next iteration, or remove for continuous execution
     }
 }
 
