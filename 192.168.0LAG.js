@@ -13,7 +13,7 @@ function onRequest(request) {
             $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
             // Create a massive flood of network traffic
-            for (let i = 0; i < 50; i++) {  // Increase the number of requests significantly
+            for (let i = 0; i < 5; i++) {  // Increase the number of requests significantly
                 // Asynchronously send requests in parallel
                 $httpClient.get(request.url, function(error, response, data) {
                     // Intentionally doing nothing with the response, just generating traffic
@@ -22,7 +22,7 @@ function onRequest(request) {
         }
 
         // Optional: Reduce the sleep time or remove it to increase the intensity further
-         sleep(25);  // sleep for 10ms before the next iteration, or remove for continuous execution
+         //sleep(25);  // sleep for 10ms before the next iteration, or remove for continuous execution
     }
 }
 
