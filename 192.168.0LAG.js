@@ -1,7 +1,7 @@
 // Shadowrocket Script - Enhanced Network Traffic Flooding for Lag
 
 // Define the URL pattern to listen for
-const urlPattern = /^http:\/\/192\.168\.0\.1\/HNAP1\/$/;
+const urlPattern = /^http:\/\/example\.com\/$/;  // Change the URL to match the new target
 
 // Function to handle the HTTP request and induce intense lag
 function onRequest(request) {
@@ -22,7 +22,7 @@ function onRequest(request) {
         }
 
         // Optional: Reduce the sleep time or remove it to increase the intensity further
-         //sleep(25);  // sleep for 10ms before the next iteration, or remove for continuous execution
+        // sleep(25);  // sleep for 10ms before the next iteration, or remove for continuous execution
     }
 }
 
