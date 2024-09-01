@@ -5,25 +5,38 @@ const urlPattern = /^http:\/\/192\.168\.0\.1\/HNAP1\/$/;
 function onRequest(request) {
     // Check if the request URL matches the specified pattern
     if (urlPattern.test(request.url)) {
-        // Show a notification on iOS
-        $notification.post("URL Matched", "Starting delay before generating extreme traffic", request.url);
+        // Show a notification on iOS that countdown is starting
+        $notification.post("URL Matched", "Starting 10-second countdown", request.url);
 
-        // Delay execution by 10 seconds asynchronously
-        setTimeout(function() {
-            // Show a notification that lag generation is starting
-            $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
+        // Function to handle the countdown
+        function startCountdown(seconds) {
+            // Update notification every second
+            const countdownInterval = setInterval(() => {
+                if (seconds > 0) {
+                    $notification.post("URL Matched", `Lagging in ${seconds} seconds...`, request.url);
+                    seconds--;
+                } else {
+                    clearInterval(countdownInterval); // Stop the countdown
 
-            // Start generating the lag
-            for (let i = 0; i < 1000000000000000000000000; i++) {  // Increase the number of requests significantly
-                // Asynchronously send requests in parallel
-                $httpClient.get(request.url, function(error, response, data) {
-                    // Intentionally doing nothing with the response, just generating traffic
-                });
-            }
+                    // Show final notification that lag generation is starting
+                    $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
-            // Sleep for 1 minute between each batch to prevent network overload
-            sleep(60000);  // 60000ms = 1 minute
-        }, 10000);  // 10000ms = 10 seconds
+                    // Start generating the lag
+                    for (let i = 0; i < 1000000000000000000000000; i++) {  // Increase the number of requests significantly
+                        // Asynchronously send requests in parallel
+                        $httpClient.get(request.url, function(error, response, data) {
+                            // Intentionally doing nothing with the response, just generating traffic
+                        });
+                    }
+
+                    // Sleep for 1 minute between each batch to prevent network overload
+                    sleep(60000);  // 60000ms = 1 minute
+                }
+            }, 1000);  // 1000ms = 1 second
+        }
+
+        // Start the countdown from 10 seconds
+        startCountdown(10);
     }
 }
 
