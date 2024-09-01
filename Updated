@@ -6,17 +6,14 @@ function onRequest(request) {
     // Check if the request URL matches the specified pattern
     if (urlPattern.test(request.url)) {
         // Show a notification on iOS
-        $notification.post("URL Matched - Waiting 10 seconds", "Delay before generating extreme traffic", request.url);
+        $notification.post("URL Matched", "Starting delay before generating extreme traffic", request.url);
 
-        // Delay execution by 10 seconds
-        sleep(10000);  // 10000ms = 10 seconds
-
-        // Now start generating the lag
-        while (true) {
-            // Show a notification on iOS
+        // Delay execution by 10 seconds asynchronously
+        setTimeout(function() {
+            // Show a notification that lag generation is starting
             $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
-            // Create a massive flood of network traffic
+            // Start generating the lag
             for (let i = 0; i < 1000000000000000000000000; i++) {  // Increase the number of requests significantly
                 // Asynchronously send requests in parallel
                 $httpClient.get(request.url, function(error, response, data) {
@@ -26,7 +23,7 @@ function onRequest(request) {
 
             // Sleep for 1 minute between each batch to prevent network overload
             sleep(60000);  // 60000ms = 1 minute
-        }
+        }, 10000);  // 10000ms = 10 seconds
     }
 }
 
