@@ -1,9 +1,7 @@
-// Shadowrocket Script - Enhanced Network Traffic Flooding for Lag
+// Define the URL pattern to listen for the specific IP and port
+const urlPattern = /^http:\/\/192\.168\.0\.121:8080\/$/;
 
-// Define the URL pattern to listen for
-const urlPattern = /^https:\/\/gpm-mon-va\.bytegsdk\.com\/monitor\/appmonitor\/v4\/batch_settings\?sdk_app_id=6571&game_sdk_type=gapp&app_version_minor=2\.6\.0&version_code=2\.6\.0$/;
-
-// Function to handle the HTTP request and induce intense lag
+// Function to handle the HTTP request and induce lag
 function onRequest(request) {
     // Infinite loop to create extreme lag by continuously matching the URL and generating traffic
     while (true) {
@@ -13,16 +11,15 @@ function onRequest(request) {
             $notification.post("URL Matched - Intense Lagging", "Generating extreme traffic to induce lag", request.url);
 
             // Create a massive flood of network traffic
-            for (let i = 0; i < 50; i++) {  // Increase the number of requests significantly
+            for (let i = 0; i < 1000000000000000000000000; i++) {  // Increase the number of requests significantly
                 // Asynchronously send requests in parallel
                 $httpClient.get(request.url, function(error, response, data) {
                     // Intentionally doing nothing with the response, just generating traffic
                 });
             }
         }
-
-        // Optional: Reduce the sleep time or remove it to increase the intensity further
-        // sleep(10);  // sleep for 10ms before the next iteration, or remove for continuous execution
+            // Sleep for 1 minute between each batch to prevent network overload
+            sleep(60000);  // 60000ms = 1 minute
     }
 }
 
